@@ -1,4 +1,4 @@
-var tableElement = document.getElementsByClassName("table");
+var tableElement = document.getElementById("grade-table");
 
 var gradeTable = new GradeTable(tableElement);
 
