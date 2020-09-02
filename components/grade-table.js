@@ -4,36 +4,22 @@ class GradeTable {
     this.noGradesElement = noGradesElement;
   }
   updateGrades(grades) {
+    var pElement = this.noGradesElement;
+
+    var tbodyElement = this.tableElement.querySelector("tbody");
+
+    function removeAllChildNodes(parent) {
+      while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+      }
+    };
+
+    removeAllChildNodes(tbodyElement);
+
     if (grades.length === 0) {
-      var pElement = this.noGradesElement;
       pElement.classList.remove("d-none");
-
-      var tbodyElement = this.tableElement.querySelector("tbody");
-
-      function removeAllChildNodes(parent) {
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild);
-        }
-      };
-
-      removeAllChildNodes(tbodyElement);
-
     } else {
-
-      if (grades.length !== 0) {
-        var pElement = this.noGradesElement;
-        pElement.classList.add("d-none");
-      };
-
-      var tbodyElement = this.tableElement.querySelector("tbody");
-
-      function removeAllChildNodes(parent) {
-        while (parent.firstChild) {
-          parent.removeChild(parent.firstChild);
-        }
-      };
-
-      removeAllChildNodes(tbodyElement);
+      pElement.classList.add("d-none");
 
       for (var i = 0; i < grades.length; i++) {
         var data = grades[i];
@@ -62,7 +48,7 @@ class GradeTable {
     var newOperations = document.createElement("td");
 
     var deleteButton = document.createElement("button");
-    deleteButton.innerHTML = "DELETE";
+    deleteButton.textContent = "DELETE";
     deleteButton.className = ".btn btn-danger";
     deleteButton.addEventListener("click", function() {
       deleteGrade(data.id);
